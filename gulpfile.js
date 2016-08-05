@@ -30,7 +30,8 @@ gulp.task('js', function(){
 gulp.task('sass', function () {
   return gulp.src('./sass/**/*.sass')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./dist/css'));
+    .pipe(gulp.dest('./dist/css'))
+    .pipe(livereload());
 });
 
 gulp.task('image', function () {
@@ -44,7 +45,7 @@ gulp.task('image', function () {
 */
 function fileTracker() {
 /* When a file is modified, runs the task in the square brackets */
-  gulp.watch('*.jade', ['jade']);
+  gulp.watch(['./*.jade','template/*.jade'], ['jade']);
   gulp.watch('sass/*.sass', ['sass']);
   gulp.watch('js/*.js', ['js']);
 }
